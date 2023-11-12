@@ -405,7 +405,15 @@ const Datatable = ({ myData, myClass, multiSelectOption, pagination }) => {
     Get("GetAllProducts")
       .then((res) => {
         console.log(res.data, "resss");
-        setapidata(res.data.posts);
+        if(localStorage.getItem("role") === "subadmin"){
+          const subadminIs = localStorage.getItem("Userid")
+          const filterData  = res.data.posts?.filter((e,i)=>e?.user?._id === subadminIs)
+          setapidata(filterData);
+
+        }
+        else{
+          setapidata(res.data.posts);
+        }
       })
       .catch((e) => {
         console.log(e);
@@ -445,7 +453,7 @@ const Datatable = ({ myData, myClass, multiSelectOption, pagination }) => {
   };
   console.log(editingRow, "abcd");
 
-  const columns = [
+  const columnsAdmin = [
     {
       name: "Name",
       selector: "name",
@@ -550,6 +558,112 @@ const Datatable = ({ myData, myClass, multiSelectOption, pagination }) => {
       ),
       disableFilters: true,
     },
+  ];
+  const columnsSubAdmin = [
+    {
+      name: "Name",
+      selector: "name",
+      sortable: true,
+    },
+    {
+      name: "Price",
+      selector: "price",
+      sortable: true,
+    },
+    {
+      name: "Discounted Price",
+      selector: "discountedPrice",
+      sortable: true,
+    },
+    {
+      name: "Short Description",
+      selector: "shortDescription",
+      sortable: true,
+    },
+    {
+      name: "Long Description",
+      selector: "longDescription",
+      sortable: true,
+    },
+    {
+      name: "Status",
+      cell: (row) => row.isApproved
+      ? 'Approved' : 'Not Approved',
+      sortable: true,
+    },
+    
+    // {
+    //   name: "category",
+    //   cell: (row) => row.category.map((number, index) => <div key={index}><p>{number.name}</p><br/></div>),
+
+    //   sortable: true,
+    // },
+    // {
+    //   name: "Category",
+    //   selector: "category",
+    //   sortable: true,
+    // },
+    // {
+    //   name: "Brands",
+    //   selector: "brand",
+    //   sortable: true,
+    // },
+    {
+      name: "images",
+      cell: (row) => (
+        //   console.log(row,"row")
+        <img
+          src={`${row.images[0]}`} // Assuming "image" is an array and you want the first element
+          alt={`Image for ${row.name}`}
+          width="50"
+          height="50"
+        />
+      ),
+    },
+    // {
+    //   name: "Action",
+    //   cell: (row) => (
+    //     <div className="d-flex col-12">
+        
+    //       <button
+    //         onClick={() => editRow(row)}
+    //         className="btn btn-secondary ms-3 shadow btn-xs sharp me-1"
+    //       >
+    //         <i className="fa fa-pen"></i>
+    //       </button>
+    //       <button
+    //         onClick={() => deleteRow(row?._id)} // Pass the entire row
+    //         className="btn btn-primary ms-3 shadow btn-xs sharp me-1"
+    //       >
+    //         <i className="fa fa-trash"></i>
+    //       </button>
+        
+    //     </div>
+    //   ),
+    //   disableFilters: true,
+    // },
+    // {
+    //   name: "Approve or Reject",
+    //   cell: (row) => (
+    //     <div className="d-flex col-12">
+    //       <button
+    //         onClick={() => approve(row?._id, "true")}
+    //         className="btn btn-success ms-3 shadow btn-xs sharp me-1"
+    //       >
+    //         <i className="fa fa-check"></i>
+    //       </button>
+        
+    //       <button
+    //         onClick={() => approve(row?._id, "false")}
+    //         // Pass the entire row
+    //         className="btn btn-primary ms-3 shadow btn-xs sharp me-1"
+    //       >
+    //         <i className="fa fa-xmark"></i>
+    //       </button>
+    //     </div>
+    //   ),
+    //   disableFilters: true,
+    // },
   ];
   //   	for (const key in myData[0]) {
   // 	let editable = renderEditable;
@@ -1051,7 +1165,7 @@ const Datatable = ({ myData, myClass, multiSelectOption, pagination }) => {
       <Fragment>
         <DataTable
           data={apidata}
-          columns={columns}
+          columns={localStorage.getItem("role") === "subadmin"  ? columnsSubAdmin : columnsAdmin}
           className={myClass}
           pagination={pagination}
           striped={true}

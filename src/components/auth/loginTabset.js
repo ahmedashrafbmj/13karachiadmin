@@ -71,6 +71,7 @@ const handleChangeSelect = (e)=>{
                     toast.success("Login successful");
                     localStorage.setItem('user', JSON.stringify(response.data.user));
                     localStorage.setItem('token', response.data.token);
+                    localStorage.setItem('Userid', response.data.user._id);
                     localStorage.setItem('status', response.data.user.status);
                     localStorage.setItem('role', response.data.user.role);
                     if (response.data.user.status === "pending") {
@@ -339,7 +340,7 @@ Select an Area
                                 <Input
                                     required=""
                                     name="number"
-                                    type="number"
+                                    type="text"
                                     className="form-control"
                                     placeholder="Number"
                                     id="exampleInputEmail12"

@@ -6,7 +6,16 @@ let apiHandle = axios.create({
 });
 
 let Get = (endPoint) => {
-  return apiHandle.get(endPoint);
+  // Get the token from local storage
+  const token = localStorage.getItem("token");
+
+  // Set the token in the request headers
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+
+  // Make the GET request with the headers
+  return apiHandle.get(endPoint, { headers });
 };
 let GetThePage = (endPoint, page) => {
   return apiHandle.get(`${endPoint}?page=${page}`);

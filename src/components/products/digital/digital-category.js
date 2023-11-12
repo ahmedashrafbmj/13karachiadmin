@@ -37,7 +37,7 @@ const Digital_category = () => {
 
   const [image, setimage] = useState();
 
-  const columns = [
+  const columnsAdmin = [
     {
       name: "Name",
       selector: "name",
@@ -97,6 +97,32 @@ const Digital_category = () => {
       ),
       disableFilters: true,
     },
+  ];
+  const columnsSubAdmin = [
+    {
+      name: "Name",
+      selector: "name",
+      sortable: true,
+    },
+    {
+      name: "Slug",
+      selector: "link",
+
+      sortable: true,
+    },
+    {
+      name: "images",
+      cell: (row) => (
+        //   console.log(row,"row")
+        <img
+          src={`${baseurl.image + row.images[0]}`} // Assuming "image" is an array and you want the first element
+          alt={`Image for ${row.name}`}
+          width="50"
+          height="50"
+        />
+      ),
+    },
+  
   ];
 
   const onOpenModal = () => {
@@ -264,7 +290,8 @@ const Digital_category = () => {
               </CardHeader>
               <CardBody>
                 <div className="btn-popup pull-right">
-                  <Button
+                 
+                  {localStorage.getItem("role")=== "subadmin" ? null :  <Button
                     type="button"
                     color="secondary"
                     onClick={onOpenModal}
@@ -272,8 +299,8 @@ const Digital_category = () => {
                     data-original-title="test"
                     data-target="#exampleModal"
                   >
-                    Add Category
-                  </Button>
+                    Add  Category
+                  </Button>} 
                   <Modal isOpen={open} toggle={onCloseModal}>
                     <ModalHeader toggle={onCloseModal}>
                       <h5
@@ -375,7 +402,7 @@ const Digital_category = () => {
 									/> */}
                   <DataTable
                     data={res}
-                    columns={columns}
+                    columns={localStorage.getItem("role")=== "subadmin" ? columnsSubAdmin : columnsAdmin}
                     pagination={false}
                     striped={true}
                     center={true}

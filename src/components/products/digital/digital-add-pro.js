@@ -89,10 +89,12 @@ const Digital_add_pro = () => {
     });
 
     try {
+      const token  = localStorage.getItem("token")
       // Send a POST request to your API endpoint
       const response = await axios.post(`${baseurl.url}addProduct`, formData, {
         headers: {
           "Content-Type": "multipart/form-data", // Important for sending form data
+          "Authorization": `Bearer ${token}`,
         },
       });
       console.log(response.data.status, "response response");

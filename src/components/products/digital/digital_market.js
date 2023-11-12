@@ -24,7 +24,7 @@ import {
 } from "reactstrap";
 import baseurl from "../../../assets/baseurl/baseurl";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { Delete } from "../../../Config/apibasemethod";
 
 const Digital_market = () => {
@@ -34,6 +34,8 @@ const Digital_market = () => {
   const [editingRow, setEditingRow] = useState(null);
   console.log(file, "file cat");
   const [res, setRes] = useState();
+  const [areas, setareas] = useState([]); // Active tab state
+
 
   const [image, setimage] = useState();
 
@@ -44,15 +46,13 @@ const Digital_market = () => {
       sortable: true,
     },
     {
-      name: "Slug",
-      selector: "link",
-
+      name: "Area",
+      selector: "areaDetails.name",
       sortable: true,
     },
     {
       name: "images",
       cell: (row) => (
-        //   console.log(row,"row")
         <img
           src={`${baseurl.image + row.images[0]}`} // Assuming "image" is an array and you want the first element
           alt={`Image for ${row.name}`}
@@ -120,7 +120,7 @@ const Digital_market = () => {
     setOpen(false);
   };
   const deleteRow = (rowId) => {
-    Delete("deleteArea", rowId)
+    Delete("deleteMarket", rowId)
       .then((response) => {
         if (response.status === 200) {
           // If the delete operation is successful on the server, update the UI
@@ -164,10 +164,11 @@ const Digital_market = () => {
     const formData = new FormData();
     const filesArray = file ? Array.from(file) : editingRow?.images;
 
-	console.log(filesArray,"filesArray");
+    console.log(filesArray, "filesArray");
     filesArray.map((file, i) => formData.append("images", file));
-	formData.append('name', inputValue.name.toLocaleLowerCase());
-	formData.append('link', inputValue.link.toLocaleLowerCase());
+    formData.append('name', inputValue.name.toLocaleLowerCase());
+    // formData.append('link', inputValue.link.toLocaleLowerCase());
+    formData.append('area', inputValue.area);
 
     if (editingRow?._id) {
       try {
@@ -201,20 +202,23 @@ const Digital_market = () => {
     } else {
       try {
         // Send a POST request to your API endpoint
+        const token  = localStorage.getItem("token")
         const response = await axios.post(
           `${baseurl.url}addMarket`,
           formData,
           {
             headers: {
               "Content-Type": "multipart/form-data", // Important for sending form data
+              "Authorization": `Bearer ${token}`,
             },
           }
         );
 
         // Handle the response, e.g., show a success message
-        if (response.data.status) {
+        if (response.data.message === " Market added successfully") {
           alert(response.data.message);
           toast.success("Successfully Added");
+          
           setOpen(false);
 
           fetchDataFromServer();
@@ -245,22 +249,36 @@ const Digital_market = () => {
     }
   };
   console.log(image, "image");
+  const fetchDataFromServerArea = async () => {
+    try {
+      // Send a GET request to your API endpoint
+      const response = await axios.get(`${baseurl.url}getArea`);
 
+      // Handle the response data, e.g., set it in state
+      setareas(response.data.areas);
+
+      console.log(response.data);
+    } catch (error) {
+      // Handle errors, e.g., show an error message
+      console.error("GET request failed", error);
+    }
+  };
   useEffect(() => {
     // Fetch data from the server when the component mounts
     fetchDataFromServer();
+    fetchDataFromServerArea();
   }, []);
 
   return (
     <Fragment>
-      <Breadcrumb title="Category" parent="Digital" />
+      <Breadcrumb title="Markets" parent="Digital" />
       {/* <!-- Container-fluid starts--> */}
       <Container fluid={true}>
         <Row>
           <Col sm="12">
             <Card>
               <CardHeader>
-                <h5>Digital Areas</h5>
+                <h5>Digital Market</h5>
               </CardHeader>
               <CardBody>
                 <div className="btn-popup pull-right">
@@ -308,33 +326,43 @@ const Digital_market = () => {
                           />
                         </FormGroup>
                         <FormGroup>
-                          <Label
-                            htmlFor="recipient-name"
-                            className="col-form-label"
-                          >
-                            Slug :
-                          </Label>
+                          {/* <Label className="col-form-label pt-0">
+                      <span>*</span>Select Color 
+                    </Label> */}
                           <Input
-                            type="text"
+                            type="select"
                             className="form-control"
-                            name="link"
-                            defaultValue={
-                              editingRow?._id ? editingRow?.link : null
-                            }
+                            id="validationCustom02"
+                            name="area"
                             onChange={(e) =>
                               setInputValue({
                                 ...inputValue,
-                                link: e.target.value,
+                                area: e.target.value,
                               })
                             }
-                          />
+                            defaultValue={
+                              editingRow?._id ? editingRow?.area : null
+                            }
+                          // value={inputValue.size}
+                          >
+                            <option value="" >
+                              Select an Area
+                            </option>
+                            {areas?.map((e, i) => {
+                              return (
+                                <option value={e?._id}>{e?.name}</option>
+                              )
+                            })}
+                          </Input>
+
                         </FormGroup>
+                       
                         <FormGroup>
                           <Label
                             htmlFor="message-text"
                             className="col-form-label"
                           >
-                            Category Image : {editingRow?.images?.length}
+                            Market Image : {editingRow?.images?.length}
                           </Label>
                           <Input
                             className="form-control"
@@ -387,6 +415,7 @@ const Digital_market = () => {
         </Row>
       </Container>
       {/* <!-- Container-fluid Ends--> */}
+      <ToastContainer />
     </Fragment>
   );
 };

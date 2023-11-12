@@ -50,6 +50,18 @@ const Digital_Users = () => {
       sortable: true,
     },
     {
+      name: "Area",
+      selector: "areaDetails.name",
+
+      sortable: true,
+    },
+    {
+      name: "Market",
+      selector: "marketDetails.name",
+
+      sortable: true,
+    },
+    {
       name: "Number",
       selector: "number",
 

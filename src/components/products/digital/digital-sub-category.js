@@ -33,7 +33,7 @@ const Digital_sub_category = () => {
   const [cat, setResCategory] = useState();
   const [image, setimage] = useState();
   const [SelectedCategory, setSelectedCategory] = useState([]);
-  const columns = [
+  const columnsAdmin = [
     {
       name: "Name",
       selector: "name",
@@ -98,6 +98,72 @@ const Digital_sub_category = () => {
       ),
       disableFilters: true,
     },
+  ];
+  const columnsSubAdmin = [
+    {
+      name: "Name",
+      selector: "name",
+      sortable: true,
+    },
+
+    {
+      name: "Category",
+      selector: "categories",
+      sortable: true,
+    },
+    // {
+    //   name: "Brands",
+    //   selector: "brand",
+    //   sortable: true,
+    // },
+    {
+      name: "images",
+      cell: (row) => (
+        //   console.log(row,"row")
+        <img
+          src={`${baseurl.image + row.images[0]}`} // Assuming "image" is an array and you want the first element
+          alt={`Image for ${row.name}`}
+          width="50"
+          height="50"
+        />
+      ),
+    },
+    // {
+    //   name: "Action",
+    //   cell: (row) => (
+    //     <div className="text-center">
+    //       <button
+    //         onClick={() => editRow(row)}
+    //         className="btn btn-success p-2 shadow btn-xs sharp me-1"
+    //       >
+    //         <div
+    //           style={{
+    //             display: "flex",
+    //             alignItems: "center",
+    //             justifyContent: "center",
+    //           }}
+    //         >
+    //           <i className="fa fa-check"></i>
+    //         </div>
+    //       </button>
+    //       <button
+    //         onClick={() => deleteRow(row?._id)} // Pass the entire row
+    //         className="btn btn-primary p-2 ms-3 shadow btn-xs sharp me-1"
+    //       >
+    //         <div
+    //           style={{
+    //             display: "flex",
+    //             alignItems: "center",
+    //             justifyContent: "center",
+    //           }}
+    //         >
+    //           <i className="fa fa-xmark"></i>
+    //         </div>
+    //       </button>
+    //     </div>
+    //   ),
+    //   disableFilters: true,
+    // },
   ];
   const deleteRow = (rowId) => {
     Delete("deletesubCategories", rowId)
@@ -286,7 +352,7 @@ const Digital_sub_category = () => {
               </CardHeader>
               <CardBody>
                 <div className="btn-popup pull-right">
-                  <Button
+                 {localStorage.getItem("role")=== "subadmin" ? null :  <Button
                     type="button"
                     color="secondary"
                     onClick={onOpenModal}
@@ -295,7 +361,8 @@ const Digital_sub_category = () => {
                     data-target="#exampleModal"
                   >
                     Add Sub Category
-                  </Button>
+                  </Button>} 
+                
                   <Modal isOpen={open} toggle={onCloseModal}>
                     <ModalHeader toggle={onCloseModal}>
                       <h5
@@ -392,7 +459,7 @@ const Digital_sub_category = () => {
                 <div id="basicScenario" className="product-physical">
                   <DataTable
                     data={res}
-                    columns={columns}
+                    columns={localStorage.getItem("role")=== "subadmin" ? columnsSubAdmin : columnsAdmin}
                     pagination={false}
                     striped={true}
                     center={true}
