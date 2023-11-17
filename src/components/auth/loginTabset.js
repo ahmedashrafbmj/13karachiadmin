@@ -12,6 +12,7 @@ const LoginTabset = () => {
     const [activeTab, setActiveTab] = useState(0); // Active tab state
     const [areas, setareas] = useState([]); // Active tab state
     const [markets, setMarkets] = useState([]); // Active tab state
+    const [sellertype, SetSellertype] = useState([]); // Active tab state
     const [filteredMarkets, setFilteredMarkets] = useState([]); // Active tab state
     const [formData, setFormData] = useState({
         email: "",
@@ -30,23 +31,24 @@ const LoginTabset = () => {
             [name]: value,
         });
     };
-const handleChangeSelect = (e)=>{
-    console.log(typeof e.target.value, "eeeeeeee");
+    const handleChangeSelect = (e) => {
+        console.log(typeof e.target.value, "eeeeeeee");
 
-    // Convert e.target.value to a string if needed
-    const selectedAreaId = String(e.target.value);
+        // Convert e.target.value to a string if needed
+        const selectedAreaId = String(e.target.value);
 
-    const filteredMarkets = markets?.filter((market) => market?.area === selectedAreaId);
+        const filteredMarkets = markets?.filter((market) => market?.area === selectedAreaId);
 
-    console.log(filteredMarkets, "filteredMarkets");
-    setFilteredMarkets(filteredMarkets)
+        console.log(filteredMarkets, "filteredMarkets");
+        setFilteredMarkets(filteredMarkets)
 
-}
+    }
     const handleSubmit = async (e, type) => {
         e.preventDefault();
 
         const formData = new FormData(e.target);
         formData.append('role', 'subadmin'); // Static role value
+        // formData.append('sellerType', sellertype); // Static role value
         let response;
         try {
             if (type === "signup") {
@@ -140,7 +142,7 @@ const handleChangeSelect = (e)=>{
         fetchDataFromServerMarkets();
         fetchDataFromServerArea();
     }, []);
-    console.log(filteredMarkets,"filteredMarkets")
+    console.log(filteredMarkets, "filteredMarkets")
     return (
         <div>
             <Fragment>
@@ -236,6 +238,35 @@ const handleChangeSelect = (e)=>{
                     <TabPanel>
                         <Form onSubmit={(e) => handleSubmit(e, "signup")} className="form-horizontal auth-form">
                             <FormGroup>
+                                <div className="form-terms d-flex align-items-center">
+                                    <div className="custom-control custom-radio me-sm-2">
+                                        <label className="d-block">
+                                            <input
+                                                className=""
+                                                name="sellerType"
+                                                id="chk-ani2"
+                                                type="radio"
+                                                value="online"
+                                                onChange={(e) => SetSellertype(e.target.value)}
+                                            />
+                                            Online Seller
+                                        </label>
+                                    </div>
+                                    <div className="custom-control custom-radio me-sm-2">
+                                        <label className="d-block">
+                                            <input
+                                                className=""
+                                                name="sellerType"
+                                                id="chk-ani1"
+                                                type="radio"
+                                                value="proper"
+                                                onChange={(e) => SetSellertype(e.target.value)}
+                                            />
+                                            Have a Shop?
+                                        </label>
+                                    </div>
+                                </div>
+
                                 <Input
                                     required=""
                                     name="email"
@@ -268,52 +299,52 @@ const handleChangeSelect = (e)=>{
                                     onChange={handleChange}
                                 />
                             </FormGroup>
-                            <FormGroup>
-                    {/* <Label className="col-form-label pt-0">
-                      <span>*</span>Select Color 
-                    </Label> */}
-                    <Input
-    type="select"
-    className="form-control"
-    id="validationCustom02"
-    name="area"
-    onChange={handleChangeSelect}
-    // value={inputValue.size}
-  >
-<option value="" >
-Select an Area
-</option>
-{areas?.map((e,i)=>{
-    return(
-        <option value={e?._id}>{e?.name}</option>
-    )
-})}
-                    </Input>
-                    
-                  </FormGroup>
-                            <FormGroup>
-                    {/* <Label className="col-form-label pt-0">
-                      <span>*</span>Select Color 
-                    </Label> */}
-             <Input
-    type="select"
-    className="form-control"
-    id="validationCustom02"
-    name="market"
-    // onChange={handleChangeSelect}
-    // value={inputValue.size}
-  >
-<option value="" >
-Select an Market
-</option>
-{filteredMarkets?.map((e,i)=>{
-    return(
-        <option value={e?._id}>{e?.name}</option>
-    )
-})}
-                    </Input>
-                    
-                  </FormGroup>
+                            {sellertype === "proper" ?
+                                (<>
+                                    <FormGroup>
+
+                                        <Input
+                                            type="select"
+                                            className="form-control"
+                                            id="validationCustom02"
+                                            name="area"
+                                            onChange={handleChangeSelect}
+                                        // value={inputValue.size}
+                                        >
+                                            <option value="" >
+                                                Select an Area
+                                            </option>
+                                            {areas?.map((e, i) => {
+                                                return (
+                                                    <option value={e?._id}>{e?.name}</option>
+                                                )
+                                            })}
+                                        </Input>
+
+                                    </FormGroup>
+                                    <FormGroup>
+
+                                        <Input
+                                            type="select"
+                                            className="form-control"
+                                            id="validationCustom02"
+                                            name="market"
+                                        // onChange={handleChangeSelect}
+                                        // value={inputValue.size}
+                                        >
+                                            <option value="" >
+                                                Select an Market
+                                            </option>
+                                            {filteredMarkets?.map((e, i) => {
+                                                return (
+                                                    <option value={e?._id}>{e?.name}</option>
+                                                )
+                                            })}
+                                        </Input>
+
+                                    </FormGroup>
+                                </>
+                                ) : null}
                             {/* <FormGroup>
                   
                     <Input

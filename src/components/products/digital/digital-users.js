@@ -51,13 +51,13 @@ const Digital_Users = () => {
     },
     {
       name: "Area",
-      selector: "areaDetails.name",
-
+      selector: (row) => (row.areaDetails ? row.areaDetails.name : "Online Seller"),
       sortable: true,
     },
     {
       name: "Market",
-      selector: "marketDetails.name",
+      selector: (row) => (row.marketDetails ? row.marketDetails.name : "Online Seller"),
+
 
       sortable: true,
     },
