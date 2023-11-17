@@ -1,6 +1,6 @@
-import React, { Fragment } from "react";
-import data from "../../assets/data/reports";
-import Datatable from "../common/datatable";
+import React, { Fragment } from 'react';
+import data from '../../assets/data/reports';
+import Datatable from '../common/datatable';
 
 const ReportTable = () => {
 	return (

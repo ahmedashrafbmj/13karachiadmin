@@ -1,8 +1,8 @@
-import React, { Fragment } from "react";
-import Breadcrumb from "../common/breadcrumb";
-import data from "../../assets/data/listMenu";
-import Datatable from "../common/datatable";
-import { Card, CardBody, CardHeader, Col, Container, Row } from "reactstrap";
+import React, { Fragment } from 'react';
+import Breadcrumb from '../common/breadcrumb';
+import data from '../../assets/data/listMenu';
+import Datatable from '../common/datatable';
+import { Card, CardBody, CardHeader, Col, Container, Row } from 'reactstrap';
 
 const List_menu = () => {
 	return (
@@ -16,10 +16,7 @@ const List_menu = () => {
 								<h5>Menu Lists</h5>
 							</CardHeader>
 							<CardBody>
-								<div
-									id="batchDelete"
-									className="category-table order-table coupon-list-delete"
-								>
+								<div id="batchDelete" className="category-table order-table coupon-list-delete">
 									<Datatable
 										multiSelectOption={true}
 										myData={data}

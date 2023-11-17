@@ -1,8 +1,8 @@
-import React, { Fragment } from "react";
-import Breadcrumb from "../common/breadcrumb";
-import data from "../../assets/data/translations";
-import Datatable from "../common/datatable";
-import { Card, CardBody, CardHeader, Col, Container, Row } from "reactstrap";
+import React, { Fragment } from 'react';
+import Breadcrumb from '../common/breadcrumb';
+import data from '../../assets/data/translations';
+import Datatable from '../common/datatable';
+import { Card, CardBody, CardHeader, Col, Container, Row } from 'reactstrap';
 
 const Translations = () => {
 	return (
@@ -16,10 +16,7 @@ const Translations = () => {
 								<h5>Translations</h5>
 							</CardHeader>
 							<CardBody>
-								<div
-									id="basicScenario"
-									className="product-list translation-list"
-								>
+								<div id="basicScenario" className="product-list translation-list">
 									<Datatable
 										multiSelectOption={false}
 										myData={data}

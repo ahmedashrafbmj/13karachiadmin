@@ -1,8 +1,8 @@
-import React, { Fragment } from "react";
-import Breadcrumb from "../common/breadcrumb";
-import data from "../../assets/data/orders";
-import Datatable from "../common/datatable";
-import { Card, CardBody, CardHeader, Col, Container, Row } from "reactstrap";
+import React, { Fragment } from 'react';
+import Breadcrumb from '../common/breadcrumb';
+import data from '../../assets/data/orders';
+import Datatable from '../common/datatable';
+import { Card, CardBody, CardHeader, Col, Container, Row } from 'reactstrap';
 
 const Orders = () => {
 	return (

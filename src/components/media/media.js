@@ -1,9 +1,9 @@
-import React, { Fragment } from "react";
-import Breadcrumb from "../common/breadcrumb";
-import MyDropzone from "../common/dropzone";
-import Datatable from "../common/datatable";
-import data from "../../assets/data/media";
-import { Card, CardBody, CardHeader, Container } from "reactstrap";
+import React, { Fragment } from 'react';
+import Breadcrumb from '../common/breadcrumb';
+import MyDropzone from '../common/dropzone';
+import Datatable from '../common/datatable';
+import data from '../../assets/data/media';
+import { Card, CardBody, CardHeader, Container } from 'reactstrap';
 
 const Media = () => {
 	return (
@@ -23,10 +23,7 @@ const Media = () => {
 						<h5>Media File List</h5>
 					</CardHeader>
 					<CardBody>
-						<div
-							id="batchDelete"
-							className="category-table media-table coupon-list-delete"
-						>
+						<div id="batchDelete" className="category-table media-table coupon-list-delete">
 							<Datatable
 								multiSelectOption={true}
 								myData={data}

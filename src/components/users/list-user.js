@@ -1,9 +1,9 @@
-import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
-import Breadcrumb from "../common/breadcrumb";
-import data from "../../assets/data/listUser";
-import Datatable from "../common/datatable";
-import { Card, CardBody, CardHeader, Container } from "reactstrap";
+import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
+import Breadcrumb from '../common/breadcrumb';
+import data from '../../assets/data/listUser';
+import Datatable from '../common/datatable';
+import { Card, CardBody, CardHeader, Container } from 'reactstrap';
 
 const List_user = () => {
 	return (
@@ -21,10 +21,7 @@ const List_user = () => {
 							</Link>
 						</div>
 						<div className="clearfix"></div>
-						<div
-							id="batchDelete"
-							className="category-table user-list order-table coupon-list-delete"
-						>
+						<div id="batchDelete" className="category-table user-list order-table coupon-list-delete">
 							<Datatable
 								multiSelectOption={true}
 								myData={data}
