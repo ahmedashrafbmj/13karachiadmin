@@ -39,7 +39,7 @@ const UserMenu = () => {
 							<i data-feather="settings"></i>Settings
 						</a>
 					</li>
-					<li>
+					<li onClick={()=>localStorage.clear()}>
 						<Link to={`${process.env.PUBLIC_URL}/`}>
 							<i data-feather="log-out"></i>Logout
 						</Link>
