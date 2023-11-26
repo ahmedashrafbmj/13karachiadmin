@@ -30,9 +30,7 @@ const Login = () => {
 											<div>
 												<h3>Welcome to 13Karachi</h3>
 												<p>
-													Lorem Ipsum is simply dummy text of the printing and
-													typesetting industry. Lorem Ipsum has been the
-													industry's standard dummy.
+													We Help You To Grow Your Business To Something Bigger And Better That It Was Before.
 												</p>
 											</div>
 										</div>
@@ -40,9 +38,7 @@ const Login = () => {
 											<div>
 												<h3>Welcome to 13karachi</h3>
 												<p>
-													Lorem Ipsum is simply dummy text of the printing and
-													typesetting industry. Lorem Ipsum has been the
-													industry's standard dummy.
+													We Help You To Grow Your Business To Something Bigger And Better That It Was Before.
 												</p>
 											</div>
 										</div>
@@ -50,9 +46,7 @@ const Login = () => {
 											<div>
 												<h3>Welcome to 13karachi</h3>
 												<p>
-													Lorem Ipsum is simply dummy text of the printing and
-													typesetting industry. Lorem Ipsum has been the
-													industry's standard dummy.
+													We Help You To Grow Your Business To Something Bigger And Better That It Was Before.
 												</p>
 											</div>
 										</div>
