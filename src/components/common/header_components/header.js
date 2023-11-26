@@ -12,7 +12,7 @@ import {
 } from "react-feather";
 
 //images
-import logo from "../../../assets/images/dashboard/multikart-logo.png";
+import logo from "../../../assets/images/dashboard/logo.png";
 
 const Header = () => {
 	const [sidebar, setSidebar] = useState(true);
@@ -81,7 +81,7 @@ const Header = () => {
 					<div className="main-header-left d-lg-none col-auto">
 						<div className="logo-wrapper">
 							<a href="index.html">
-								<img className="blur-up lazyloaded" src={logo} alt="" />
+								<img className="blur-up lazyloaded" style={{height:"71px"}} src={logo} alt="" />
 							</a>
 						</div>
 					</div>

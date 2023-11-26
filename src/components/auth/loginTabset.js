@@ -61,6 +61,7 @@ const LoginTabset = () => {
 
                 if (response.data.message === "Signup successful") {
                     toast.success("Signup successful");
+                    setTerms('')
                     setActiveTab(0); // Switch to the "Login" tab after successful signup
                 }
             } else {

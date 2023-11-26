@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { MENUITEMS } from "../../../constants/menu";
 
 // image import
-import logo from "../../../assets/images/dashboard/multikart-logo.png";
+import logo from "../../../assets/images/dashboard/logo.png";
 
 const Sidebar = () => {
 	const [mainmenu, setMainMenu] = useState(MENUITEMS);
@@ -197,7 +197,7 @@ const Sidebar = () => {
 				<div className="main-header-left d-none d-lg-block">
 					<div className="logo-wrapper">
 						<Link to={`${process.env.PUBLIC_URL}/dashboard`}>
-							<img className="blur-up lazyloaded" src={logo} alt="" />
+							<img className="blur-up lazyloaded" style={{height:"71px"}} src={logo} alt="" />
 						</Link>
 					</div>
 				</div>
