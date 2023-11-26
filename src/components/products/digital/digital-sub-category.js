@@ -40,11 +40,11 @@ const Digital_sub_category = () => {
 			sortable: true,
 		},
 
-		{
-			name: 'Category',
-			selector: 'categories',
-			sortable: true,
-		},
+		// {
+		// 	name: 'Category',
+		// 	selector: 'categories',
+		// 	sortable: true,
+		// },
 		// {
 		//   name: "Brands",
 		//   selector: "brand",

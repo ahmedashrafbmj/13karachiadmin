@@ -76,6 +76,11 @@ const Digital_add_pro = () => {
 		formData.append('totalUnits', inputValue.totalUnits);
 		formData.append('ProductLink', inputValue.ProductLink);
 		formData.append('longDescription', inputValue.longDescription);
+		items?.map((e,i)=>{
+			formData.append(`products[${i}][size]`, e?.size);
+			formData.append(`products[${i}][quantity]`, e?.quantity);
+			formData.append(`products[${i}][color]`, e?.color);
+		})
 		SelectedCategory?.map((e, i) => formData.append(`category[${i}]`, e._id));
 		// selectedSubcategories?.map((e, i) =>
 		//   formData.append(`subcategories[${i}]`, e._id)
@@ -189,11 +194,12 @@ const Digital_add_pro = () => {
 
 	const handleAddButtonClick = () => {
 		// Check if both size and quantity are selected before adding to the array
-		if (inputValue.size && inputValue.QuantityForColor) {
+		if (inputValue.size && inputValue.QuantityForSize && inputValue.color) {
 			// Create a new object with size and quantity and add it to the array
 			const newItem = {
 				size: inputValue.size,
-				quantity: inputValue.QuantityForColor,
+				quantity: inputValue.QuantityForSize,
+				color: inputValue.color,
 			};
 
 			// Assuming you have a state variable called 'items' to store the array
@@ -280,7 +286,7 @@ const Digital_add_pro = () => {
 									</FormGroup>
 									<FormGroup>
 										<Label className="col-form-label pt-0">
-											<span>*</span>Select Color
+											<span>*</span>Select Size
 										</Label>
 										<Input
 											type="select"
@@ -301,16 +307,30 @@ const Digital_add_pro = () => {
 									</FormGroup>
 									<FormGroup>
 										<Label className="col-form-label pt-0">
+											<span>*</span> Enter Color
+										</Label>
+										<Input
+											className="form-control"
+											id="validationCustom02"
+											type="text"
+											name="color"
+											required=""
+											onChange={handleInputChange}
+											value={inputValue.color}
+										/>
+									</FormGroup>
+									<FormGroup>
+										<Label className="col-form-label pt-0">
 											<span>*</span> Enter Quantity For Selected Color
 										</Label>
 										<Input
 											className="form-control"
 											id="validationCustom02"
 											type="number"
-											name="QuantityForColor"
+											name="QuantityForSize"
 											required=""
 											onChange={handleInputChange}
-											value={inputValue.QuantityForColor}
+											value={inputValue.QuantityForSize}
 										/>
 									</FormGroup>
 									<Button onClick={handleAddButtonClick}>Add</Button>
@@ -322,7 +342,7 @@ const Digital_add_pro = () => {
 										return (
 											<>
 												<div key={i}>
-													<span>{e?.size}</span> :<span>{e?.quantity}</span>
+													<span>{e?.size}</span> <span>{e?.color}</span> :<span>{e?.quantity}</span>
 													<Label className="col-form-label pt-0">
 														&nbsp;&nbsp;{' '}
 														<span

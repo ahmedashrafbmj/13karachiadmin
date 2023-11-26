@@ -14,6 +14,7 @@ const LoginTabset = () => {
     const [markets, setMarkets] = useState([]); // Active tab state
     const [sellertype, SetSellertype] = useState([]); // Active tab state
     const [filteredMarkets, setFilteredMarkets] = useState([]); // Active tab state
+    const [terms, setTerms] = useState(); // Active tab state
     const [formData, setFormData] = useState({
         email: "",
         name: "",
@@ -95,7 +96,7 @@ const LoginTabset = () => {
             }
         } catch (error) {
             console.error(error);
-            toast.error("Invalid username or password");
+            toast.error(error.response.data.message);
             // Handle the error (e.g., display an error message)
         }
     };
@@ -249,7 +250,7 @@ const LoginTabset = () => {
                                                 value="online"
                                                 onChange={(e) => SetSellertype(e.target.value)}
                                             />
-                                            Online Seller
+                                           {" "} Online Seller
                                         </label>
                                     </div>
                                     <div className="custom-control custom-radio me-sm-2">
@@ -262,10 +263,12 @@ const LoginTabset = () => {
                                                 value="proper"
                                                 onChange={(e) => SetSellertype(e.target.value)}
                                             />
-                                            Have a Shop?
+                                            {" "} Have a Shop?
                                         </label>
                                     </div>
                                 </div>
+                                </FormGroup>
+                                <FormGroup>
 
                                 <Input
                                     required=""
@@ -276,7 +279,7 @@ const LoginTabset = () => {
                                     id="exampleInputEmail12"
                                     onChange={handleChange}
                                 />
-                            </FormGroup>
+                                </FormGroup>
                             <FormGroup>
                                 <Input
                                     required=""
@@ -407,6 +410,8 @@ Select an Area
                                             className="checkbox_animated"
                                             id="chk-ani2"
                                             type="checkbox"
+                                            value="accpted"
+                                            onChange={(e)=>setTerms(e.target.value)}
                                         />
                                         I agree to all statements in{" "}
                                         <span>
@@ -419,7 +424,8 @@ Select an Area
                                 <Button
                                     color="primary"
                                     type="submit"
-                                    onClick={() => routeChange()}
+                                    disabled={!terms}
+                                    onClick={() =>{routeChange()}}
                                 >
                                     Register
                                 </Button>
