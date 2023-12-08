@@ -214,7 +214,7 @@ const LoginTabset = () => {
                                 <span>Or Login with social platforms</span>
                                 <ul className="social">
                                     <li>
-                                        <a href="/#">
+                                        <a href="https://m.facebook.com/profile.php?id=100082254692576&locale2=hi_IN&_rdr" target="_blank">
                                             <i className="icon-facebook"></i>
                                         </a>
                                     </li>
@@ -228,11 +228,11 @@ const LoginTabset = () => {
                                             <i className="icon-instagram"></i>
                                         </a>
                                     </li>
-                                    <li>
+                                    {/* <li>
                                         <a href="/#">
                                             <i className="icon-pinterest-alt"></i>
                                         </a>
-                                    </li>
+                                    </li> */}
                                 </ul>
                             </div>
                         </Form>
