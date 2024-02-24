@@ -1,11 +1,16 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Tabs, TabList, TabPanel, Tab } from "react-tabs";
 import { User, Unlock } from "react-feather";
+
 import { useNavigate } from "react-router-dom";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
+import { Modal, ModalBody, ModalFooter, ModalTitle } from 'react-bootstrap';
+import { ModalHeader } from 'reactstrap'
+import { Document, Page, pdfjs } from 'react-pdf';
 import axios from "axios";
 import baseurl from "../../assets/baseurl/baseurl";
 import { ToastContainer, toast } from "react-toastify";
+// import pdfFile from '../../assets/images/termsandconditions.pdf'
 
 const LoginTabset = () => {
     const history = useNavigate();
@@ -14,6 +19,14 @@ const LoginTabset = () => {
     const [markets, setMarkets] = useState([]); // Active tab state
     const [sellertype, SetSellertype] = useState([]); // Active tab state
     const [filteredMarkets, setFilteredMarkets] = useState([]); // Active tab state
+    const [show, setShow] = useState(false);
+
+    useEffect(() => {
+        pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+    });
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
     const [terms, setTerms] = useState(); // Active tab state
     const [formData, setFormData] = useState({
         email: "",
@@ -24,6 +37,8 @@ const LoginTabset = () => {
         password: "",
         confirmPassword: "",
     });
+
+    const pdfFile = 'https://raw.githubusercontent.com/RizanKhan837/13karachibackend/main/termsandconditions.pdf';
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -251,7 +266,7 @@ const LoginTabset = () => {
                                                 value="online"
                                                 onChange={(e) => SetSellertype(e.target.value)}
                                             />
-                                           {" "} Online Seller
+                                            {" "} Online Seller
                                         </label>
                                     </div>
                                     <div className="custom-control custom-radio me-sm-2">
@@ -268,8 +283,8 @@ const LoginTabset = () => {
                                         </label>
                                     </div>
                                 </div>
-                                </FormGroup>
-                                <FormGroup>
+                            </FormGroup>
+                            <FormGroup>
 
                                 <Input
                                     required=""
@@ -280,7 +295,7 @@ const LoginTabset = () => {
                                     id="exampleInputEmail12"
                                     onChange={handleChange}
                                 />
-                                </FormGroup>
+                            </FormGroup>
                             <FormGroup>
                                 <Input
                                     required=""
@@ -412,11 +427,11 @@ Select an Area
                                             id="chk-ani2"
                                             type="checkbox"
                                             value="accpted"
-                                            onChange={(e)=>setTerms(e.target.value)}
+                                            onChange={(e) => setTerms(e.target.value)}
                                         />
                                         I agree to all statements in{" "}
                                         <span>
-                                            <a href="/#">Terms &amp; Conditions</a>
+                                            <a href="/#" onClick={handleShow}>Terms &amp; Conditions</a>
                                         </span>
                                     </Label>
                                 </div>
@@ -426,7 +441,7 @@ Select an Area
                                     color="primary"
                                     type="submit"
                                     disabled={!terms}
-                                    onClick={() =>{routeChange()}}
+                                    onClick={() => { routeChange() }}
                                 >
                                     Register
                                 </Button>
@@ -434,6 +449,22 @@ Select an Area
                         </Form>
                     </TabPanel>
                 </Tabs>
+
+                <Modal show={show} onHide={handleClose} centered size="lg">
+                    <ModalHeader closeButton>
+                        <Modal.Title>Terms and Conditions</Modal.Title>
+                    </ModalHeader>
+                    <ModalBody style={{ overflow: 'auto', maxHeight: '80vh' }}>
+                        <Document file={pdfFile}>
+                            <Page pageNumber={1} style={{ width: '100%' }} />
+                        </Document>
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button variant="secondary" onClick={handleClose}>
+                            Close
+                        </Button>
+                    </ModalFooter>
+                </Modal>
 
                 <ToastContainer />
             </Fragment>
