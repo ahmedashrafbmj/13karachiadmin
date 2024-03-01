@@ -455,9 +455,81 @@ Select an Area
                         <Modal.Title>Terms and Conditions</Modal.Title>
                     </ModalHeader>
                     <ModalBody style={{ overflow: 'auto', maxHeight: '80vh' }}>
-                        <Document file={pdfFile}>
+                        {/* <Document file={pdfFile}>
                             <Page pageNumber={1} style={{ width: '100%' }} />
-                        </Document>
+                        </Document> */}
+                        <p>﻿
+
+
+Terms and Conditions
+
+Welcome to 13karachi.com and/or terakarachi.com ("Site") and/or 13karachi (App). The owner and operator of the Site is 13Karachi.com ("we", "our" or "us").
+
+These Terms of Use and all policies and additional terms (if applicable) posted on the Site set out the terms on which we offer you access to and use of our Site, services and applications including our mobile application (collectively, the "Services"). You can find all of our policies and additional terms here: 13karachi.com. These Legal Documents are incorporated by reference into these Terms of Use.
+
+By accessing, registering and/or continuing to use or access our Services, you are agreeing to be bound by these Terms of Use and the Legal Documents with immediate effect. These Terms of Use and the Legal Documents are subject to change by us at any time. Your continued use of the Site following any such change constitutes your agreement to these Terms of Use and Legal Documents as so modified.
+
+References in these Terms of Use to "you" (or similar) are references to you as an individual or legal entity as the case may be.
+
+ABOUT OUR SITE
+
+The Site is an e-commerce platform that allows enterprise users to offer and sell products, and individuals and enterprise entities to buy products.
+
+We reserve the right to introduce new Services and update or withdraw any of the Services, in our sole discretion, and we will not be liable to you for exercising this discretion.
+
+1. ELIGIBILITY AND REGISTRATION REQUIREMENTS
+
+1. You are eligible to register as a buyer or seller and benefit from the Services if you meet the following eligibility criteria:
+
+a.
+
+for buyers:
+
+i.
+
+you are above the legal age for purchasing products in your country of residence; and
+
+ii.
+
+you are able to provide an address for delivery of products.
+
+b.
+
+for sellers:
+
+i.
+
+you provide proof of authorisation for the individual who will be registering and using the Site;
+
+11. you provide identification for the authorised person;
+
+you acknowledge and agree that for certain product categories, additional requirements might be applicable.
+
+2. In order to register to the Site, you will need to provide us with certain information. Your registration to the Site may not be accepted if you do not provide us with the required information. We reserve the right to decline any registration without further explanation. We reserve the right to undertake such checks as are necessary to verify your identity.
+
+3. Once you have successfully completed registration, your registration shall continue for an indefinite period, subject to suspension or termination in accordance with clause 6 of these Terms of Use.
+
+2. YOUR OBLIGATIONS
+
+1. When using or accessing the Services, you agree that you:
+
+are responsible for maintaining the confidentiality of, and restricting access to and use of your account and password, and accept responsibility for all activities that occur under your account and password;
+
+a. agree to immediately notify us of any unauthorised use of your password or account or any other breach of security;
+
+b. will provide true, accurate, current and complete information about yourself and your use of the Services as required by us;
+
+C.
+
+will not disclose to any third party (except as required or requested by us) a user's information provided to you; and
+
+d. will cooperate with our requests for additional information with respect to your eligibility and usage of our Services. 2. When using or accessing the Services, you agree that you will not:
+
+post list or upload in any manner any information which is blasphemous, defamatory, obscene, libellous, invasive of another's privacy, hateful, or racially, ethnically objectionable, disparaging, relating or encouraging money laundering or gambling, or otherwise unlawful in any manner whatsoever.
+
+2.
+
+post, list or upload content or items in inappropriate or prohibited categories or areas on our Site, including:</p>
                     </ModalBody>
                     <ModalFooter>
                         <Button variant="secondary" onClick={handleClose}>

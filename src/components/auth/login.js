@@ -24,7 +24,7 @@ const Login = () => {
 							<Col className="col-md-5 p-0 card-left">
 								<Card className="bg-primary">
 									<div className="svg-icon">
-										<img alt="" src={logo} className="Img-fluid" style={{
+										<img alt="" src={"https://13karachi.com/assets/images/area.jpeg"} className="Img-fluid" style={{
 											paddingTop: '22px'
 										}} />
 									</div>
