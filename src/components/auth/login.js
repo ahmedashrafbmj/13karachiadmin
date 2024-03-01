@@ -25,7 +25,7 @@ const Login = () => {
 								<Card className="bg-primary">
 									<div className="svg-icon">
 										<img alt="" src={"https://13karachi.com/assets/images/area.jpeg"} className="Img-fluid" style={{
-											paddingTop: '22px'
+											
 										}} />
 									</div>
 									<Slider className="single-item" {...settings}>
