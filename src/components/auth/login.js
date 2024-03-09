@@ -4,6 +4,7 @@ import { ArrowLeft } from "react-feather";
 import Slider from "react-slick";
 import stats from "../../assets/images/dashboard/stats.png";
 import logo from "../../assets/images/dashboard/logo.jpeg";
+import Area from "../../assets/images/Logo-07.png";
 import "../../assets/scss/slick.scss";
 import "../../assets/scss/slick-theme.scss";
 import { Card, CardBody, Col, Container, Row } from "reactstrap";
@@ -24,7 +25,7 @@ const Login = () => {
 							<Col className="col-md-5 p-0 card-left">
 								<Card className="bg-primary">
 									<div className="svg-icon">
-										<img alt="" src={"https://13karachi.com/assets/images/area.jpeg"} className="Img-fluid" style={{
+										<img alt="" src={Area} className="Img-fluid" style={{
 											
 										}} />
 									</div>
